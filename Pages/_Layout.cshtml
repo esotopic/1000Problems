@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - 1000 Problems</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="logo">1000 Problems</h1>
+            <p class="tagline">Building solutions, one problem at a time</p>
+        </div>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <p>&copy; @DateTime.UtcNow.Year 1000 Problems. All rights reserved.</p>
+    </footer>
+</body>
+</html>

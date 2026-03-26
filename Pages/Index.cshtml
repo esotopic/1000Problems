@@ -1,0 +1,73 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+
+<section class="search-section">
+    <form method="get" class="search-form">
+        <input type="text" name="search" value="@Model.SearchTerm" placeholder="Search applications..." class="search-input" />
+        <button type="submit" class="search-button">Search</button>
+        @if (!string.IsNullOrEmpty(Model.SearchTerm))
+        {
+            <a href="/" class="clear-link">Clear</a>
+        }
+    </form>
+</section>
+
+<section class="apps-section">
+    @if (Model.Applications.Any())
+    {
+        <div class="apps-grid">
+            @foreach (var app in Model.Applications)
+            {
+                <div class="app-card">
+                    @if (!string.IsNullOrEmpty(app.ImageUrl))
+                    {
+                        <div class="app-image">
+                            <img src="@app.ImageUrl" alt="@app.Name" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="app-image app-image-placeholder">
+                            <span>@app.Name[0]</span>
+                        </div>
+                    }
+                    <div class="app-info">
+                        <h2 class="app-name">
+                            @if (!string.IsNullOrEmpty(app.Url))
+                            {
+                                <a href="@app.Url">@app.Name</a>
+                            }
+                            else
+                            {
+                                @app.Name
+                            }
+                        </h2>
+                        <p class="app-description">@app.Description</p>
+                        @if (!string.IsNullOrEmpty(app.Notes))
+                        {
+                            <p class="app-notes">@app.Notes</p>
+                        }
+                        <p class="app-date">Added @app.CreatedDate.ToString("MMM d, yyyy")</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="no-results">
+            @if (!string.IsNullOrEmpty(Model.SearchTerm))
+            {
+                <p>No applications found matching "<strong>@Model.SearchTerm</strong>"</p>
+            }
+            else
+            {
+                <p>No applications yet. Check back soon!</p>
+            }
+        </div>
+    }
+</section>

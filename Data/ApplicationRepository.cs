@@ -1,0 +1,78 @@
+using Microsoft.Data.SqlClient;
+using _1000Problems.Models;
+
+namespace _1000Problems.Data;
+
+public class ApplicationRepository
+{
+    private readonly string _connectionString;
+
+    public ApplicationRepository(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+
+    public async Task<List<Application>> GetActiveApplicationsAsync(string? searchTerm = null)
+    {
+        var apps = new List<Application>();
+        using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        var sql = @"SELECT Id, Name, Description, Notes, Url, ImageUrl, IsActive, CreatedDate, ModifiedDate
+                    FROM Applications WHERE IsActive = 1";
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+            sql += " AND (Name LIKE @Search OR Description LIKE @Search OR Notes LIKE @Search)";
+
+        sql += " ORDER BY CreatedDate DESC";
+
+        using var command = new SqlCommand(sql, connection);
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+            command.Parameters.AddWithValue("@Search", $"%{searchTerm}%");
+
+        using var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            apps.Add(new Application
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Description = reader.GetString(2),
+                Notes = reader.IsDBNull(3) ? null : reader.GetString(3),
+                Url = reader.IsDBNull(4) ? null : reader.GetString(4),
+                ImageUrl = reader.IsDBNull(5) ? null : reader.GetString(5),
+                IsActive = reader.GetBoolean(6),
+                CreatedDate = reader.GetDateTime(7),
+                ModifiedDate = reader.GetDateTime(8)
+            });
+        }
+        return apps;
+    }
+
+    public async Task EnsureTableExistsAsync()
+    {
+        using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+
+        var sql = @"
+            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Applications' AND xtype='U')
+            BEGIN
+                CREATE TABLE Applications (
+                    Id INT IDENTITY(1,1) PRIMARY KEY,
+                    Name NVARCHAR(200) NOT NULL,
+                    Description NVARCHAR(1000) NOT NULL DEFAULT '',
+                    Notes NVARCHAR(MAX) NULL,
+                    Url NVARCHAR(500) NULL,
+                    ImageUrl NVARCHAR(500) NULL,
+                    IsActive BIT NOT NULL DEFAULT 1,
+                    CreatedDate DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+                    ModifiedDate DATETIME2 NOT NULL DEFAULT GETUTCDATE()
+                );
+                INSERT INTO Applications (Name, Description, Notes, Url, IsActive)
+                VALUES ('RubberJoins', 'First application on 1000 Problems', 'Coming soon', NULL, 1);
+            END";
+
+        using var command = new SqlCommand(sql, connection);
+        await command.ExecuteNonQueryAsync();
+    }
+}
