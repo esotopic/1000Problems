@@ -9,19 +9,30 @@ public class IndexModel : PageModel
 {
     private readonly ApplicationRepository _repository;
 
-    public IndexModel(ApplicationRepository repository)
-    {
-        _repository = repository;
-    }
+        public IndexModel(ApplicationRepository repository)
+            {
+                    _repository = repository;
+                        }
 
-    public List<Application> Applications { get; set; } = new();
+                            public List<Application> Applications { get; set; } = new();
 
-    [BindProperty(SupportsGet = true)]
-    public string? SearchTerm { get; set; }
+                                [BindProperty(SupportsGet = true)]
+                                    public string? SearchTerm { get; set; }
 
-    public async Task OnGetAsync(string? search)
-    {
-        SearchTerm = search;
-        Applications = await _repository.GetActiveApplicationsAsync(search);
-    }
-}
+                                        public string? ErrorMessage { get; set; }
+
+                                            public async Task OnGetAsync(string? search)
+                                                {
+                                                        SearchTerm = search;
+                                                                try
+                                                                        {
+                                                                                    Applications = await _repository.GetActiveApplicationsAsync(search);
+                                                                                            }
+                                                                                                    catch (Exception ex)
+                                                                                                            {
+                                                                                                                        ErrorMessage = "Unable to connect to the database. Please try again later.";
+                                                                                                                                    Applications = new List<Application>();
+                                                                                                                                            }
+                                                                                                                                                }
+                                                                                                                                                }
+                                                                                                                                                
