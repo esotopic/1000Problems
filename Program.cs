@@ -1,27 +1,37 @@
 using _1000Problems.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddRazorPages();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+        ?? "NOT_CONFIGURED";
+
 builder.Services.AddSingleton(new ApplicationRepository(connectionString));
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+// Ensure database table exists on startup (non-fatal)
+try
 {
-    var repo = scope.ServiceProvider.GetRequiredService<ApplicationRepository>();
-    await repo.EnsureTableExistsAsync();
+        using var scope = app.Services.CreateScope();
+        var repo = scope.ServiceProvider.GetRequiredService<ApplicationRepository>();
+        await repo.EnsureTableExistsAsync();
+        app.Logger.LogInformation("Database initialized successfully.");
+}
+catch (Exception ex)
+{
+        app.Logger.LogError(ex, "Failed to initialize database on startup. App will continue without DB.");
 }
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+        app.UseExceptionHandler("/Error");
+        app.UseHsts();
 }
 
 app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
+
 app.Run();
