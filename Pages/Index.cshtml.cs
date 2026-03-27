@@ -20,6 +20,15 @@ public class IndexModel : PageModel
             Url = "https://rubberjoins-app.azurewebsites.net",
             IsActive = true,
             CreatedDate = new DateTime(2026, 3, 27)
+        },
+        new Application
+        {
+            Id = 2,
+            Name = "RubberJointsAI",
+            Description = "AI-powered mobility tracking - smart exercise routines with AI coaching and progress insights",
+            Url = "https://rubberjoints-ai-app-aycpgve8acbvfpfj.canadacentral-01.azurewebsites.net",
+            IsActive = true,
+            CreatedDate = new DateTime(2026, 3, 27)
         }
     };
 
