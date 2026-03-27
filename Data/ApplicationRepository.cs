@@ -12,10 +12,19 @@ public class ApplicationRepository
         _connectionString = connectionString;
     }
 
+    private SqlConnection CreateConnection(int timeoutSeconds = 120)
+    {
+        var builder = new SqlConnectionStringBuilder(_connectionString)
+        {
+            ConnectTimeout = timeoutSeconds
+        };
+        return new SqlConnection(builder.ConnectionString);
+    }
+
     public async Task<List<Application>> GetActiveApplicationsAsync(string? searchTerm = null)
     {
         var apps = new List<Application>();
-        using var connection = new SqlConnection(_connectionString);
+        using var connection = CreateConnection();
         await connection.OpenAsync();
 
         var sql = @"SELECT Id, Name, Description, Notes, Url, ImageUrl, IsActive, CreatedDate, ModifiedDate
@@ -51,7 +60,7 @@ public class ApplicationRepository
 
     public async Task EnsureTableExistsAsync()
     {
-        using var connection = new SqlConnection(_connectionString);
+        using var connection = CreateConnection();
         await connection.OpenAsync();
 
         var sql = @"
@@ -69,13 +78,13 @@ public class ApplicationRepository
                     ModifiedDate DATETIME2 NOT NULL DEFAULT GETUTCDATE()
                 );
                 INSERT INTO Applications (Name, Description, Notes, Url, IsActive)
-                VALUES ('RubberJoins', 'Mobility tracking app — daily stretching and exercise routines with progress tracking', NULL, 'https://rubberjoins-app.azurewebsites.net', 1);
+                VALUES ('RubberJoins', 'Mobility tracking app - daily stretching and exercise routines with progress tracking', NULL, 'https://rubberjoins-app.azurewebsites.net', 1);
             END
 
             -- Update existing record if URL is missing
             UPDATE Applications
             SET Url = 'https://rubberjoins-app.azurewebsites.net',
-                Description = 'Mobility tracking app — daily stretching and exercise routines with progress tracking',
+                Description = 'Mobility tracking app - daily stretching and exercise routines with progress tracking',
                 Notes = NULL,
                 ModifiedDate = GETUTCDATE()
             WHERE Name = 'RubberJoins' AND Url IS NULL;";
