@@ -9,6 +9,20 @@ public class IndexModel : PageModel
 {
     private readonly ApplicationRepository _repository;
 
+    // Static fallback for instant page load when no search is active
+    private static readonly List<Application> _staticApps = new()
+    {
+        new Application
+        {
+            Id = 1,
+            Name = "RubberJoins",
+            Description = "Mobility tracking app - daily stretching and exercise routines with progress tracking",
+            Url = "https://rubberjoins-app.azurewebsites.net",
+            IsActive = true,
+            CreatedDate = new DateTime(2026, 3, 27)
+        }
+    };
+
     public IndexModel(ApplicationRepository repository)
     {
         _repository = repository;
@@ -24,14 +38,27 @@ public class IndexModel : PageModel
     public async Task OnGetAsync(string? search)
     {
         SearchTerm = search;
+
+        if (string.IsNullOrWhiteSpace(search))
+        {
+            // No search — use static data for instant rendering
+            Applications = _staticApps;
+            return;
+        }
+
+        // Search requested — hit the database for fresh results
         try
         {
             Applications = await _repository.GetActiveApplicationsAsync(search);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ErrorMessage = "Unable to connect to the database. Please try again later.";
-            Applications = new List<Application>();
+            ErrorMessage = "Unable to search right now. Please try again in a moment.";
+            // Fall back to filtering static list
+            Applications = _staticApps
+                .Where(a => a.Name.Contains(search, StringComparison.OrdinalIgnoreCase)
+                    || a.Description.Contains(search, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
     }
 }
