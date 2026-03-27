@@ -69,8 +69,16 @@ public class ApplicationRepository
                     ModifiedDate DATETIME2 NOT NULL DEFAULT GETUTCDATE()
                 );
                 INSERT INTO Applications (Name, Description, Notes, Url, IsActive)
-                VALUES ('RubberJoins', 'First application on 1000 Problems', 'Coming soon', NULL, 1);
-            END";
+                VALUES ('RubberJoins', 'Mobility tracking app — daily stretching and exercise routines with progress tracking', NULL, 'https://rubberjoins-app.azurewebsites.net', 1);
+            END
+
+            -- Update existing record if URL is missing
+            UPDATE Applications
+            SET Url = 'https://rubberjoins-app.azurewebsites.net',
+                Description = 'Mobility tracking app — daily stretching and exercise routines with progress tracking',
+                Notes = NULL,
+                ModifiedDate = GETUTCDATE()
+            WHERE Name = 'RubberJoins' AND Url IS NULL;";
 
         using var command = new SqlCommand(sql, connection);
         await command.ExecuteNonQueryAsync();
