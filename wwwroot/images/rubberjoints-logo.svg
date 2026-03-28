@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" width="600" height="280">
   <defs>
     <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
@@ -14,83 +14,79 @@
     </linearGradient>
   </defs>
 
-  <!-- Dark background with rounded corners -->
-  <rect width="400" height="400" rx="32" fill="#1a1a2e"/>
+  <!-- Dark background -->
+  <rect width="600" height="280" rx="20" fill="#1a1a2e"/>
 
-  <!-- Smiley face (top left area) -->
-  <g transform="translate(62,58)">
-    <circle cx="0" cy="0" r="26" fill="#f5c842" stroke="#e8b530" stroke-width="2"/>
-    <circle cx="-9" cy="-5" r="4" fill="#1a1a2e"/>
-    <circle cx="9" cy="-5" r="4" fill="#1a1a2e"/>
-    <path d="M-12,7 Q0,20 12,7" stroke="#1a1a2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Smiley face (left side decoration) -->
+  <g transform="translate(42,42)">
+    <circle cx="0" cy="0" r="18" fill="#f5c842" stroke="#e8b530" stroke-width="2"/>
+    <circle cx="-6" cy="-4" r="3" fill="#1a1a2e"/>
+    <circle cx="6" cy="-4" r="3" fill="#1a1a2e"/>
+    <path d="M-8,5 Q0,14 8,5" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   </g>
 
-  <!-- Lightning bolt (top right area) -->
-  <g transform="translate(310,50)">
-    <polygon points="0,-20 -12,2 -2,2 -8,24 8,0 0,0 6,-20" fill="#f5c842"/>
+  <!-- Lightning bolt (top right) -->
+  <g transform="translate(558,38)">
+    <polygon points="0,-14 -8,1 -1,1 -6,17 6,0 0,0 4,-14" fill="#f5c842"/>
   </g>
 
-  <!-- Small flower (far right) -->
-  <g transform="translate(355,78)">
-    <circle cx="0" cy="0" r="6" fill="#4ecdc4"/>
-    <circle cx="0" cy="-9" r="4" fill="#4ecdc4"/>
-    <circle cx="8.5" cy="-2.8" r="4" fill="#4ecdc4"/>
-    <circle cx="5.3" cy="7.3" r="4" fill="#4ecdc4"/>
-    <circle cx="-5.3" cy="7.3" r="4" fill="#4ecdc4"/>
-    <circle cx="-8.5" cy="-2.8" r="4" fill="#4ecdc4"/>
-    <circle cx="0" cy="0" r="4" fill="#f5c842"/>
-  </g>
-
-  <!-- "DON'T" - smaller text at top -->
-  <text x="200" y="65" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="34" font-weight="900" fill="url(#orangeGrad)" letter-spacing="4">DON'T</text>
-
-  <!-- "SKIP" - big bold orange retro style -->
-  <text x="200" y="130" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="72" font-weight="900" fill="url(#orangeGrad)" letter-spacing="3">SKIP</text>
-
-  <!-- Dumbbell decorations around "JOINTS" -->
-  <!-- Left dumbbell -->
-  <g transform="translate(50, 200)">
-    <rect x="-20" y="-6" width="14" height="12" rx="3" fill="#888" stroke="#666" stroke-width="1"/>
-    <rect x="-6" y="-3" width="12" height="6" rx="2" fill="#aaa"/>
-    <rect x="6" y="-6" width="14" height="12" rx="3" fill="#888" stroke="#666" stroke-width="1"/>
-  </g>
-
-  <!-- Right dumbbell -->
-  <g transform="translate(350, 200)">
-    <rect x="-20" y="-6" width="14" height="12" rx="3" fill="#888" stroke="#666" stroke-width="1"/>
-    <rect x="-6" y="-3" width="12" height="6" rx="2" fill="#aaa"/>
-    <rect x="6" y="-6" width="14" height="12" rx="3" fill="#888" stroke="#666" stroke-width="1"/>
-  </g>
-
-  <!-- "JOINTS" - biggest text, warm yellow -->
-  <text x="200" y="220" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="70" font-weight="900" fill="url(#yellowGrad)" letter-spacing="2">JOINTS</text>
-
-  <!-- "DAY" - big teal text at bottom -->
-  <text x="200" y="310" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="80" font-weight="900" fill="url(#tealGrad)" letter-spacing="5">DAY</text>
-
-  <!-- Joint/bone icons flanking "DAY" -->
-  <!-- Left bone -->
-  <g transform="translate(50,290)" fill="#4ecdc4" opacity="0.7">
-    <circle cx="0" cy="-10" r="6"/>
-    <circle cx="0" cy="10" r="6"/>
-    <rect x="-3" y="-10" width="6" height="20" rx="3"/>
-  </g>
-
-  <!-- Right bone -->
-  <g transform="translate(350,290)" fill="#4ecdc4" opacity="0.7">
-    <circle cx="0" cy="-10" r="6"/>
-    <circle cx="0" cy="10" r="6"/>
-    <rect x="-3" y="-10" width="6" height="20" rx="3"/>
+  <!-- Flower (bottom right) -->
+  <g transform="translate(560,245)">
+    <circle cx="0" cy="0" r="5" fill="#4ecdc4"/>
+    <circle cx="0" cy="-7" r="3" fill="#4ecdc4"/>
+    <circle cx="6.6" cy="-2.2" r="3" fill="#4ecdc4"/>
+    <circle cx="4.1" cy="5.7" r="3" fill="#4ecdc4"/>
+    <circle cx="-4.1" cy="5.7" r="3" fill="#4ecdc4"/>
+    <circle cx="-6.6" cy="-2.2" r="3" fill="#4ecdc4"/>
+    <circle cx="0" cy="0" r="3" fill="#f5c842"/>
   </g>
 
   <!-- Small stars scattered -->
-  <g fill="#f5c842" opacity="0.5">
-    <polygon points="140,155 142,161 148,161 143,165 145,171 140,167 135,171 137,165 132,161 138,161" />
-    <polygon points="270,155 272,161 278,161 273,165 275,171 270,167 265,171 267,165 262,161 268,161" />
-    <polygon points="100,330 102,336 108,336 103,340 105,346 100,342 95,346 97,340 92,336 98,336" />
-    <polygon points="310,330 312,336 318,336 313,340 315,346 310,342 305,346 307,340 302,336 308,336" />
+  <g fill="#f5c842" opacity="0.45">
+    <polygon points="85,240 87,246 93,246 88,250 90,256 85,252 80,256 82,250 77,246 83,246" />
+    <polygon points="520,40 522,46 528,46 523,50 525,56 520,52 515,56 517,50 512,46 518,46" />
+    <polygon points="42,200 44,206 50,206 45,210 47,216 42,212 37,216 39,210 34,206 40,206" />
   </g>
 
+  <!-- Left dumbbell -->
+  <g transform="translate(42, 140)">
+    <rect x="-15" y="-5" width="10" height="10" rx="2" fill="#888" stroke="#666" stroke-width="1"/>
+    <rect x="-5" y="-2.5" width="10" height="5" rx="1.5" fill="#aaa"/>
+    <rect x="5" y="-5" width="10" height="10" rx="2" fill="#888" stroke="#666" stroke-width="1"/>
+  </g>
+
+  <!-- Right dumbbell -->
+  <g transform="translate(558, 140)">
+    <rect x="-15" y="-5" width="10" height="10" rx="2" fill="#888" stroke="#666" stroke-width="1"/>
+    <rect x="-5" y="-2.5" width="10" height="5" rx="1.5" fill="#aaa"/>
+    <rect x="5" y="-5" width="10" height="10" rx="2" fill="#888" stroke="#666" stroke-width="1"/>
+  </g>
+
+  <!-- Left bone icon -->
+  <g transform="translate(42,95)" fill="#4ecdc4" opacity="0.6">
+    <circle cx="0" cy="-7" r="4"/>
+    <circle cx="0" cy="7" r="4"/>
+    <rect x="-2" y="-7" width="4" height="14" rx="2"/>
+  </g>
+
+  <!-- Right bone icon -->
+  <g transform="translate(558,190)" fill="#4ecdc4" opacity="0.6">
+    <circle cx="0" cy="-7" r="4"/>
+    <circle cx="0" cy="7" r="4"/>
+    <rect x="-2" y="-7" width="4" height="14" rx="2"/>
+  </g>
+
+  <!-- ====== MAIN TEXT — stacked and centered ====== -->
+
+  <!-- "DON'T SKIP" - line 1 -->
+  <text x="300" y="80" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="52" font-weight="900" fill="url(#orangeGrad)" letter-spacing="4">DON'T SKIP</text>
+
+  <!-- "JOINTS" - line 2, biggest -->
+  <text x="300" y="160" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="82" font-weight="900" fill="url(#yellowGrad)" letter-spacing="3">JOINTS</text>
+
+  <!-- "DAY" - line 3 -->
+  <text x="300" y="230" text-anchor="middle" font-family="'Arial Black', 'Impact', system-ui, sans-serif" font-size="60" font-weight="900" fill="url(#tealGrad)" letter-spacing="6">DAY</text>
+
   <!-- "RubberJointsAI" subtle at very bottom -->
-  <text x="200" y="370" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="white" opacity="0.35" letter-spacing="3">RUBBERJOINTS AI</text>
+  <text x="300" y="268" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="white" opacity="0.3" letter-spacing="3">RUBBERJOINTS AI</text>
 </svg>
