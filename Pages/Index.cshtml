@@ -22,38 +22,26 @@
         <div class="apps-grid">
             @foreach (var app in Model.Applications)
             {
-                <div class="app-card">
-                    @if (!string.IsNullOrEmpty(app.ImageUrl))
-                    {
-                        <div class="app-image">
-                            <img src="@app.ImageUrl" alt="@app.Name" />
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="app-image app-image-placeholder">
-                            <span>@app.Name[0]</span>
-                        </div>
-                    }
-                    <div class="app-info">
-                        <h2 class="app-name">
-                            @if (!string.IsNullOrEmpty(app.Url))
-                            {
-                                <a href="@app.Url">@app.Name</a>
-                            }
-                            else
-                            {
-                                @app.Name
-                            }
-                        </h2>
-                        <p class="app-description">@app.Description</p>
-                        @if (!string.IsNullOrEmpty(app.Notes))
+                <a href="@app.Url" class="app-card-link">
+                    <div class="app-card">
+                        @if (!string.IsNullOrEmpty(app.ImageUrl))
                         {
-                            <p class="app-notes">@app.Notes</p>
+                            <div class="app-image">
+                                <img src="@app.ImageUrl" alt="@app.Name" />
+                            </div>
                         }
-                        <p class="app-date">Added @app.CreatedDate.ToString("MMM d, yyyy")</p>
+                        else
+                        {
+                            <div class="app-image app-image-placeholder">
+                                <span>@app.Name[0]</span>
+                            </div>
+                        }
+                        <div class="app-info">
+                            <p class="app-description">@app.Description</p>
+                            <p class="app-date">Added @app.CreatedDate.ToString("MMM d, yyyy")</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             }
         </div>
     }
