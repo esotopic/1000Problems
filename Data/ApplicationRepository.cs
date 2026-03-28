@@ -91,7 +91,7 @@ public class ApplicationRepository
             IF NOT EXISTS (SELECT 1 FROM Applications WHERE Name = 'RubberJointsAI')
             BEGIN
                 INSERT INTO Applications (Name, Description, Notes, Url, IsActive)
-                VALUES ('RubberJointsAI', 'Because your joints shouldn''t sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you''re 25 — even if your knees disagree.', NULL, 'https://rubberjoints-ai-app-aycpgve8acbvfpfj.canadacentral-01.azurewebsites.net', 1);
+                VALUES ('RubberJointsAI', 'Because your joints shouldn''t sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you''re 25 — even if your knees disagree.', NULL, 'https://app.1000problems.com', 1);
             END
             ELSE
             BEGIN
