@@ -1,85 +1,144 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4a6cf7;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#af52de;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#34c759;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#00d4aa;stop-opacity:1" />
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4aa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a6cf7;stop-opacity:1" />
     </linearGradient>
+    <linearGradient id="jointGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa726;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
 
-  <!-- Rounded background -->
-  <rect width="200" height="200" rx="40" fill="url(#bg)"/>
+  <!-- Dark modern background -->
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
 
-  <!-- Subtle grid pattern for tech feel -->
-  <g opacity="0.06" stroke="white" stroke-width="0.5" fill="none">
-    <line x1="0" y1="50" x2="200" y2="50"/>
-    <line x1="0" y1="100" x2="200" y2="100"/>
-    <line x1="0" y1="150" x2="200" y2="150"/>
-    <line x1="50" y1="0" x2="50" y2="200"/>
-    <line x1="100" y1="0" x2="100" y2="200"/>
-    <line x1="150" y1="0" x2="150" y2="200"/>
-  </g>
+  <!-- Subtle radial glow behind figure -->
+  <circle cx="200" cy="170" r="120" fill="#4a6cf7" opacity="0.08"/>
+  <circle cx="200" cy="170" r="80" fill="#00d4aa" opacity="0.06"/>
 
-  <!-- Figure doing a lunge/stretch -->
-  <g transform="translate(100,95)" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <!-- Stick figure doing a comically stiff squat — knees clearly struggling -->
+  <g transform="translate(200,155)">
     <!-- Head -->
-    <circle cx="0" cy="-42" r="10" fill="white" stroke="none" opacity="0.95"/>
+    <circle cx="0" cy="-72" r="18" fill="white" opacity="0.95"/>
 
-    <!-- Torso - slight lean forward -->
-    <line x1="0" y1="-30" x2="-5" y2="10" stroke-width="5"/>
+    <!-- Sweat drops (comedy!) -->
+    <ellipse cx="22" cy="-78" rx="3" ry="5" fill="#4fc3f7" opacity="0.8"/>
+    <ellipse cx="28" cy="-68" rx="2" ry="4" fill="#4fc3f7" opacity="0.6"/>
+    <ellipse cx="-20" cy="-80" rx="2.5" ry="4" fill="#4fc3f7" opacity="0.7"/>
 
-    <!-- Left arm reaching up/back (stretch) -->
-    <line x1="-2" y1="-24" x2="-25" y2="-40"/>
-    <line x1="-25" y1="-40" x2="-38" y2="-52"/>
+    <!-- Stressed face -->
+    <!-- Eyes (squinting in pain) -->
+    <line x1="-7" y1="-76" x2="-3" y2="-73" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-3" y1="-73" x2="1" y2="-76" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="5" y1="-76" x2="9" y2="-73" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="9" y1="-73" x2="13" y2="-76" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
 
-    <!-- Right arm forward -->
-    <line x1="-2" y1="-24" x2="20" y2="-15"/>
-    <line x1="20" y1="-15" x2="32" y2="-22"/>
+    <!-- Grimacing mouth -->
+    <path d="M-6,-64 Q0,-60 6,-64" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Teeth lines for grimace -->
+    <line x1="-3" y1="-63" x2="-3" y2="-61" stroke="#1a1a2e" stroke-width="1.2"/>
+    <line x1="0" y1="-62.5" x2="0" y2="-60.5" stroke="#1a1a2e" stroke-width="1.2"/>
+    <line x1="3" y1="-63" x2="3" y2="-61" stroke="#1a1a2e" stroke-width="1.2"/>
 
-    <!-- Left leg (front, bent in lunge) -->
-    <line x1="-5" y1="10" x2="-22" y2="32"/>
-    <line x1="-22" y1="32" x2="-30" y2="52"/>
+    <!-- Body / Torso -->
+    <line x1="0" y1="-52" x2="0" y2="-5" stroke="white" stroke-width="6" stroke-linecap="round"/>
 
-    <!-- Right leg (back, extended) -->
-    <line x1="-5" y1="10" x2="18" y2="30"/>
-    <line x1="18" y1="30" x2="40" y2="48"/>
+    <!-- Arms holding knees (trying to support them!) -->
+    <!-- Left arm -->
+    <line x1="0" y1="-38" x2="-28" y2="-22" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-28" y1="-22" x2="-30" y2="8" stroke="white" stroke-width="5" stroke-linecap="round"/>
 
-    <!-- Joint circles (the key feature — highlighted joints!) -->
+    <!-- Right arm -->
+    <line x1="0" y1="-38" x2="28" y2="-22" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    <line x1="28" y1="-22" x2="30" y2="8" stroke="white" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Left leg (bent, squat position) -->
+    <line x1="0" y1="-5" x2="-32" y2="22" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    <line x1="-32" y1="22" x2="-35" y2="62" stroke="white" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Right leg (bent, squat position) -->
+    <line x1="0" y1="-5" x2="32" y2="22" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    <line x1="32" y1="22" x2="35" y2="62" stroke="white" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- JOINTS — the stars of the show! Glowing orange/red pain indicators -->
+
     <!-- Left shoulder -->
-    <circle cx="-2" cy="-24" r="5" fill="url(#glow)" stroke="none"/>
-    <circle cx="-2" cy="-24" r="8" fill="none" stroke="#34c759" stroke-width="1.5" opacity="0.5"/>
-
-    <!-- Left elbow -->
-    <circle cx="-25" cy="-40" r="4" fill="url(#glow)" stroke="none"/>
-    <circle cx="-25" cy="-40" r="7" fill="none" stroke="#34c759" stroke-width="1" opacity="0.4"/>
+    <circle cx="0" cy="-38" r="7" fill="url(#jointGlow)" filter="url(#glow)"/>
 
     <!-- Right shoulder -->
-    <circle cx="20" cy="-15" r="4" fill="url(#glow)" stroke="none"/>
+    <circle cx="0" cy="-38" r="7" fill="url(#jointGlow)" filter="url(#glow)"/>
+
+    <!-- Left elbow -->
+    <circle cx="-28" cy="-22" r="6" fill="url(#jointGlow)" filter="url(#glow)"/>
+
+    <!-- Right elbow -->
+    <circle cx="28" cy="-22" r="6" fill="url(#jointGlow)" filter="url(#glow)"/>
 
     <!-- Left hip -->
-    <circle cx="-5" cy="10" r="5" fill="url(#glow)" stroke="none"/>
-    <circle cx="-5" cy="10" r="8" fill="none" stroke="#34c759" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="0" cy="-5" r="8" fill="url(#jointGlow)" filter="url(#glow)"/>
 
-    <!-- Left knee -->
-    <circle cx="-22" cy="32" r="4.5" fill="url(#glow)" stroke="none"/>
-    <circle cx="-22" cy="32" r="7.5" fill="none" stroke="#34c759" stroke-width="1" opacity="0.4"/>
+    <!-- LEFT KNEE — BIGGEST, most painful! -->
+    <circle cx="-32" cy="22" r="10" fill="url(#jointGlow)" filter="url(#softglow)"/>
+    <!-- Pain starburst on left knee -->
+    <g transform="translate(-32,22)" fill="none" stroke="#ffeb3b" stroke-width="1.5" opacity="0.8">
+      <line x1="0" y1="-15" x2="0" y2="-19"/>
+      <line x1="10" y1="-10" x2="14" y2="-14"/>
+      <line x1="14" y1="0" x2="18" y2="0"/>
+      <line x1="10" y1="10" x2="14" y2="14"/>
+      <line x1="0" y1="15" x2="0" y2="19"/>
+      <line x1="-10" y1="10" x2="-14" y2="14"/>
+      <line x1="-14" y1="0" x2="-18" y2="0"/>
+      <line x1="-10" y1="-10" x2="-14" y2="-14"/>
+    </g>
 
-    <!-- Right knee -->
-    <circle cx="18" cy="30" r="4.5" fill="url(#glow)" stroke="none"/>
-    <circle cx="18" cy="30" r="7.5" fill="none" stroke="#34c759" stroke-width="1" opacity="0.4"/>
+    <!-- RIGHT KNEE — BIGGEST, most painful! -->
+    <circle cx="32" cy="22" r="10" fill="url(#jointGlow)" filter="url(#softglow)"/>
+    <!-- Pain starburst on right knee -->
+    <g transform="translate(32,22)" fill="none" stroke="#ffeb3b" stroke-width="1.5" opacity="0.8">
+      <line x1="0" y1="-15" x2="0" y2="-19"/>
+      <line x1="10" y1="-10" x2="14" y2="-14"/>
+      <line x1="14" y1="0" x2="18" y2="0"/>
+      <line x1="10" y1="10" x2="14" y2="14"/>
+      <line x1="0" y1="15" x2="0" y2="19"/>
+      <line x1="-10" y1="10" x2="-14" y2="14"/>
+      <line x1="-14" y1="0" x2="-18" y2="0"/>
+      <line x1="-10" y1="-10" x2="-14" y2="-14"/>
+    </g>
+
+    <!-- Feet -->
+    <line x1="-35" y1="62" x2="-48" y2="66" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <line x1="35" y1="62" x2="48" y2="66" stroke="white" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- "CRACK" sound effect near knees -->
+    <text x="-65" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#ffeb3b" opacity="0.9" transform="rotate(-15,-65,15)">CRACK!</text>
+    <text x="45" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#ffeb3b" opacity="0.7" transform="rotate(10,45,35)">POP!</text>
   </g>
 
-  <!-- AI sparkle icon (top right) -->
-  <g transform="translate(158,38)" fill="white" opacity="0.85">
-    <path d="M0,-12 L2,-4 L10,-2 L2,0 L0,8 L-2,0 L-10,-2 L-2,-4 Z"/>
-  </g>
-  <g transform="translate(145,55)" fill="white" opacity="0.5">
-    <path d="M0,-6 L1,-2 L5,-1 L1,0 L0,4 L-1,0 L-5,-1 L-1,-2 Z"/>
-  </g>
+  <!-- "Don't skip Joint day" tagline — the punchline -->
+  <text x="200" y="310" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="url(#accent)" letter-spacing="1" text-transform="uppercase">DON'T SKIP JOINT DAY</text>
 
-  <!-- "RJ" text at bottom -->
-  <text x="100" y="185" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="white" opacity="0.9" letter-spacing="3">RJ AI</text>
+  <!-- App name subtle below -->
+  <text x="200" y="345" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="white" opacity="0.5" letter-spacing="4">RUBBERJOINTS AI</text>
+
+  <!-- Bottom accent line -->
+  <rect x="140" y="358" width="120" height="2" rx="1" fill="url(#accent)" opacity="0.4"/>
 </svg>
