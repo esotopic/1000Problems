@@ -81,19 +81,25 @@ public class ApplicationRepository
                 VALUES ('RubberJoins', 'Mobility tracking app - daily stretching and exercise routines with progress tracking', NULL, 'https://rubberjoins-app.azurewebsites.net', 1);
             END
 
-            -- Update existing record if URL is missing
+            -- Deactivate the old RubberJoins app (replaced by RubberJointsAI)
             UPDATE Applications
-            SET Url = 'https://rubberjoins-app.azurewebsites.net',
-                Description = 'Mobility tracking app - daily stretching and exercise routines with progress tracking',
-                Notes = NULL,
+            SET IsActive = 0,
                 ModifiedDate = GETUTCDATE()
-            WHERE Name = 'RubberJoins' AND Url IS NULL;
+            WHERE Name = 'RubberJoins';
 
             -- Add RubberJointsAI if not exists
             IF NOT EXISTS (SELECT 1 FROM Applications WHERE Name = 'RubberJointsAI')
             BEGIN
                 INSERT INTO Applications (Name, Description, Notes, Url, IsActive)
-                VALUES ('RubberJointsAI', 'AI-powered mobility tracking - smart exercise routines with AI coaching and progress insights', NULL, 'https://rubberjoints-ai-app-aycpgve8acbvfpfj.canadacentral-01.azurewebsites.net', 1);
+                VALUES ('RubberJointsAI', 'Because your joints shouldn''t sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you''re 25 — even if your knees disagree.', NULL, 'https://rubberjoints-ai-app-aycpgve8acbvfpfj.canadacentral-01.azurewebsites.net', 1);
+            END
+            ELSE
+            BEGIN
+                UPDATE Applications
+                SET Description = 'Because your joints shouldn''t sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you''re 25 — even if your knees disagree.',
+                    IsActive = 1,
+                    ModifiedDate = GETUTCDATE()
+                WHERE Name = 'RubberJointsAI';
             END";
 
         using var command = new SqlCommand(sql, connection);

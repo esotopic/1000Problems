@@ -14,18 +14,9 @@ public class IndexModel : PageModel
     {
         new Application
         {
-            Id = 1,
-            Name = "RubberJoins",
-            Description = "Mobility tracking app - daily stretching and exercise routines with progress tracking",
-            Url = "https://rubberjoins-app.azurewebsites.net",
-            IsActive = true,
-            CreatedDate = new DateTime(2026, 3, 27)
-        },
-        new Application
-        {
             Id = 2,
             Name = "RubberJointsAI",
-            Description = "AI-powered mobility tracking - smart exercise routines with AI coaching and progress insights",
+            Description = "Because your joints shouldn't sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you're 25 — even if your knees disagree.",
             Url = "https://rubberjoints-ai-app-aycpgve8acbvfpfj.canadacentral-01.azurewebsites.net",
             IsActive = true,
             CreatedDate = new DateTime(2026, 3, 27)
