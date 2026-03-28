@@ -97,6 +97,7 @@ public class ApplicationRepository
             BEGIN
                 UPDATE Applications
                 SET Description = 'Because your joints shouldn''t sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you''re 25 — even if your knees disagree.',
+                    ImageUrl = '/images/rubberjoints-logo.svg',
                     IsActive = 1,
                     ModifiedDate = GETUTCDATE()
                 WHERE Name = 'RubberJointsAI';

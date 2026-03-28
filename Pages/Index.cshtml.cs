@@ -18,6 +18,7 @@ public class IndexModel : PageModel
             Name = "RubberJointsAI",
             Description = "Because your joints shouldn't sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you're 25 — even if your knees disagree.",
             Url = "https://rubberjoints-ai-app-aycpgve8acbvfpfj.canadacentral-01.azurewebsites.net",
+            ImageUrl = "/images/rubberjoints-logo.svg",
             IsActive = true,
             CreatedDate = new DateTime(2026, 3, 27)
         }
