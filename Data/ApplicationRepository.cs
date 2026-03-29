@@ -101,6 +101,23 @@ public class ApplicationRepository
                     IsActive = 1,
                     ModifiedDate = GETUTCDATE()
                 WHERE Name = 'RubberJointsAI';
+
+            -- Add B3tz if not exists
+            IF NOT EXISTS (SELECT 1 FROM Applications WHERE Name = 'B3tz')
+            BEGIN
+                INSERT INTO Applications (Name, Description, Notes, Url, ImageUrl, IsActive)
+                VALUES ('B3tz', 'Finally, a place to put your big mouth to work. Make bold predictions, challenge your friends, and find out who actually knows what they''re talking about -- spoiler: it''s probably not you.', NULL, 'https://b3tz.1000problems.com', '/images/b3tz-logo.svg', 1);
+            END
+            ELSE
+            BEGIN
+                UPDATE Applications
+                SET Description = 'Finally, a place to put your big mouth to work. Make bold predictions, challenge your friends, and find out who actually knows what they''re talking about -- spoiler: it''s probably not you.',
+                    ImageUrl = '/images/b3tz-logo.svg',
+                    Url = 'https://b3tz.1000problems.com',
+                    IsActive = 1,
+                    ModifiedDate = GETUTCDATE()
+                WHERE Name = 'B3tz';
+            END
             END";
 
         using var command = new SqlCommand(sql, connection);

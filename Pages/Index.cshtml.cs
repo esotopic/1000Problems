@@ -14,6 +14,16 @@ public class IndexModel : PageModel
     {
         new Application
         {
+            Id = 3,
+            Name = "B3tz",
+            Description = "Finally, a place to put your big mouth to work. Make bold predictions, challenge your friends, and find out who actually knows what they're talking about — spoiler: it's probably not you.",
+            Url = "https://b3tz.1000problems.com",
+            ImageUrl = "/images/b3tz-logo.svg",
+            IsActive = true,
+            CreatedDate = new DateTime(2026, 3, 28)
+        },
+        new Application
+        {
             Id = 2,
             Name = "RubberJointsAI",
             Description = "Because your joints shouldn't sound like a bowl of Rice Krispies when you stand up. AI-powered mobility coaching that keeps you moving like you're 25 — even if your knees disagree.",
