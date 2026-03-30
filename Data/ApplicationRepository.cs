@@ -118,6 +118,14 @@ public class ApplicationRepository
                     ModifiedDate = GETUTCDATE()
                 WHERE Name = 'B3tz';
             END
+
+            -- Vybe Program Manager
+            IF NOT EXISTS (SELECT 1 FROM Applications WHERE Name = 'Vybe Program Manager')
+                INSERT INTO Applications (Name, Description, Notes, Url, ImageUrl, IsActive)
+                VALUES ('Vybe Program Manager', 'The PM tool that manages itself. Tell Claude what to build, triage it, and watch AI crush your backlog while you sip coffee.', '', 'https://vybe.1000problems.com', '/images/vybe-logo.svg', 1)
+            ELSE
+                UPDATE Applications SET Description = 'The PM tool that manages itself. Tell Claude what to build, triage it, and watch AI crush your backlog while you sip coffee.', ImageUrl = '/images/vybe-logo.svg', Url = 'https://vybe.1000problems.com', IsActive = 1, ModifiedDate = GETDATE() WHERE Name = 'Vybe Program Manager';
+
             END";
 
         using var command = new SqlCommand(sql, connection);

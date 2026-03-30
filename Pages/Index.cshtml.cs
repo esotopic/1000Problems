@@ -14,6 +14,16 @@ public class IndexModel : PageModel
     {
         new Application
         {
+            Id = 4,
+            Name = "Vybe Program Manager",
+            Description = "The PM tool that manages itself. Tell Claude what to build, triage it, and watch AI crush your backlog while you sip coffee.",
+            Url = "https://vybe.1000problems.com",
+            ImageUrl = "/images/vybe-logo.svg",
+            IsActive = true,
+            CreatedDate = new DateTime(2026, 3, 29)
+        },
+        new Application
+        {
             Id = 3,
             Name = "B3tz",
             Description = "Finally, a place to put your big mouth to work. Make bold predictions, challenge your friends, and find out who actually knows what they're talking about — spoiler: it's probably not you.",
